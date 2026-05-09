@@ -5,12 +5,15 @@
 *.pyc
 
 
-.__pycache__/
+accounts/__pycache__/
 
-.db.sqlite3
-.media/
-.venv/
+shoplist/__pycache__/
+
+
+db.sqlite3
+media/
+venv/
 .env
-.manage.py/
-.venv
+manage.py/
+.venv/
 
