@@ -3,11 +3,9 @@
 *.log
 *.pot
 *.pyc
+__pycache__/
 
 
-accounts/__pycache__/
-
-shoplist/__pycache__/
 
 
 db.sqlite3
