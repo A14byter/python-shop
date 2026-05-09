@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> notification</title>
+    <link rel="stylesheet" href="{% static 'accounts/style3.css' %}">
+</head>
+<body>
+    <div class="notification-wrapper">
+        {% if error %}
+            <div class="error-box">
+                {{ error }}
+            </div>
+        {% else %}
+            {% if notification %}
+                {% for notif in notification %}
+                    <div class="notification-card">
+                        <div class="notification-text">{{ notif.text }}</div>
+                        <div class="notification-date">{{ notif.date }}</div>
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="notif_id" value="{{notif.id}}">
+                            <button type="submit" class="butn">delete</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-notification">No notificatin yet</div>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>

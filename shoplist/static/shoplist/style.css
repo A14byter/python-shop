@@ -1,0 +1,231 @@
+/* general styles */
+body {
+    font-family: 'Arial', sans-serif;
+    direction: rtl; 
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px; 
+     margin: 20px auto;
+    
+    padding: 0 0;
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 25px; 
+    min-width: 200px;
+
+    background-color: #f4f7f6;
+}
+
+
+
+.search {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 20px;
+    
+}
+.searchbar{
+    display: flex;
+    width: 400px;
+    padding-right: 250px;
+   
+}
+.search input[type="text"] {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px; 
+    font-size: 16px;
+    width: 60%;
+    max-width: 400px;
+    outline: none;
+}
+
+.search button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #28a745; 
+    color: white;
+    font-size: 16px;
+    border-radius: 0 5px 5px 0; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    outline: none;
+}
+
+.search button:hover {
+    background-color: #218838; 
+}
+
+
+
+.logouticon{width: 40px;}
+.notificon{
+    width: 40px;
+}
+.icon{display: flex;
+gap: 20px;}
+.icon_img{
+    width: 40px;
+    padding-right: 200px;
+   
+    
+}
+.delivery{
+    width: 50px;
+    padding-top: 10px;
+}
+.item {
+    
+    margin-top: 100px;
+    height: 100%; 
+    padding-top:100px ;
+    min-width: 200px;
+    max-width: 300px;
+
+    background-color: #ffffff; 
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08); 
+    padding: 15px;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    text-decoration: none; 
+    color: inherit; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+   
+}
+.tabb{margin-top: 20px;}
+.item:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); 
+}
+
+.item .title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+    flex-grow: 1; 
+}
+
+.item .image {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.item .image img {
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+    border-radius: 8px; 
+    display: block; 
+}
+
+.item .describetion {
+    font-size: 13px;
+    color: #6c757d;
+    margin-bottom: 15px;
+    text-align: center;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    
+    display: -moz-box; 
+    line-clamp: 3; 
+    box-orient: vertical; 
+}
+
+
+
+.add_item {
+    margin-top: auto; /* دکمه به پایین کارت بچسبد */
+    width: 100%;
+}
+
+.add_btn, .remove_btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%; /* دکمه تمام عرض */
+}
+
+.add_btn {
+    background-color: #007bff; /* آبی */
+    color: white;
+}
+
+.add_btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.remove_btn {
+    background-color: #dc3545; /* قرمز */
+    color: white;
+}
+
+.remove_btn:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .search input[type="text"] {
+        width: 70%;
+    }
+    .container {
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* کوچکتر کردن آیتم‌ها در صفحات کوچک */
+        gap: 15px;
+    }
+    .item .image img {
+        height: 180px;
+    }
+    .item .title {
+        font-size: 16px;
+    }
+    .item .describetion {
+        font-size: 12px;
+    }
+    .add_btn, .remove_btn {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .search {
+        flex-direction: column;
+        align-items: center;
+    }
+    .search input[type="text"],
+    .search button {
+        border-radius: 5px;
+        width: 85%;
+        margin-bottom: 10px;
+    }
+    .search button {
+        margin-bottom: 0;
+    }
+    .container {
+        grid-template-columns: 1fr; /* تک ستونه در صفحات خیلی کوچک */
+        padding: 10px;
+    }
+    .item .image img {
+        height: 160px;
+    }
+}
+

@@ -1,0 +1,267 @@
+/* ------------------------------- */
+/* ریست و تنظیمات پایه */
+/* ------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(145deg, #f1f5f9 0%, #e9eef3 100%);
+    font-family: 'Segoe UI', 'Roboto', system-ui, -apple-system, sans-serif;
+    padding: 2rem 1rem;
+    direction: ltr; /* چون دیتا معمولاً انگلیسی/لاتین هست */
+    min-height: 100vh;
+}
+
+/* کانتینر اصلی */
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    background: transparent;
+}
+
+/* ------------------------------- */
+/* پیام خطا */
+/* ------------------------------- */
+.error-message {
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 1rem 1.5rem;
+    border-radius: 40px;
+    font-size: 1rem;
+    text-align: center;
+    border: 1px solid #fecaca;
+    font-weight: 500;
+}
+
+/* ------------------------------- */
+/* کارت اطلاعات کاربر */
+/* ------------------------------- */
+.account_complete {
+    background: white;
+    border-radius: 32px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    padding: 1.8rem 2rem;
+    margin-bottom: 2.5rem;
+    transition: all 0.2s ease;
+    border: 1px solid #eef2f8;
+}
+
+.account_complete h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #0f172a;
+    border-right: 5px solid #3b82f6;
+    padding-right: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.account_complete p {
+    font-size: 0.95rem;
+    color: #1e293b;
+    background: #f8fafc;
+    padding: 0.6rem 1rem;
+    border-radius: 20px;
+    margin-bottom: 0.75rem;
+    display: inline-block;
+    width: auto;
+    min-width: 260px;
+    border: 1px solid #e2e8f0;
+}
+
+.account_complete p span {
+    font-weight: 600;
+    color: #0f172a;
+    display: inline-block;
+    width: 100px;
+}
+
+/* ------------------------------- */
+/* کارت سفارشات (delivery) */
+/* ------------------------------- */
+.delivery-card {
+    background: white;
+    border-radius: 28px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.03);
+    margin-bottom: 1.8rem;
+    padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border: 1px solid #edf2f7;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.delivery-card:hover {
+    box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+/* تصویر محصول */
+.delivery-card > img:first-of-type {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 24px;
+    background: #f1f5f9;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+}
+
+/* اطلاعات محصول */
+.delivery-info {
+    flex: 2;
+    min-width: 180px;
+}
+
+.delivery-info strong {
+    font-size: 1.25rem;
+    color: #0f172a;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.price-row {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin: 0.5rem 0;
+}
+
+.original-price {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    text-decoration: line-through;
+}
+
+.final-price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #3b82f6;
+}
+
+/* ------------------------------- */
+/* وضعیت تحویل (بدون تداخل) */
+/* ------------------------------- */
+.delivery-status {
+    flex: 1.2;
+    min-width: 240px;
+    background: #f8fafc;
+    border-radius: 28px;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;        /* فاصله بین تمام عناصر */
+    justify-content: flex-start;
+}
+
+.status-icon {
+    width: 34px;
+    height: 34px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;      /* جلوگیری از فشرده شدن */
+}
+
+.status-icon img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    display: block;
+}
+
+.status-text {
+    font-size: 0.85rem;
+    font-weight: 500;
+    background: white;
+    padding: 0.4rem 1rem;
+    border-radius: 40px;
+    display: inline-block;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+    white-space: nowrap;
+}
+
+/* رنگ‌های مختلف برای وضعیت‌ها */
+.status-text.accepted {
+    background: #e0f2fe;
+    color: #0284c7;
+}
+
+.status-text.post {
+    background: #fff3e3;
+    color: #ea580c;
+}
+
+.status-text.delivered {
+    background: #dcfce7;
+    color: #16a34a;
+}
+
+/* پیام عدم وجود سفارش */
+.no-trade {
+    text-align: center;
+    background: #f1f5f9;
+    padding: 2rem;
+    border-radius: 32px;
+    font-size: 1rem;
+    color: #475569;
+    border: 1px dashed #cbd5e1;
+}
+
+/* ------------------------------- */
+/* ریسپانسیو (موبایل) */
+/* ------------------------------- */
+@media (max-width: 750px) {
+    .delivery-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .delivery-card > img:first-of-type {
+        width: 100%;
+        height: auto;
+        max-height: 250px;
+    }
+
+    .account_complete p {
+        display: block;
+        width: 100%;
+    }
+
+    .delivery-status {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 550px) {
+    .delivery-status {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .status-text {
+        white-space: normal;
+        width: auto;
+        text-align: center;
+    }
+
+    .account_complete h2 {
+        font-size: 1.3rem;
+    }
+
+    .final-price {
+        font-size: 1.2rem;
+    }
+}

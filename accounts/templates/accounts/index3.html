@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'accounts/style2.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        {% if account_complete %}
+            
+            <form action="" method="POST">
+                {% csrf_token %}
+                     
+            <input type="text" name="name" placeholder="name" value="{{account_complete.name}}">
+            <input type="text" name="last_name" placeholder="last name" value="{{account_complete.last_name}}">
+            <input type="text" name="availbale_phone_number" placeholder="availbale phone number" value="{{account_complete.availbale_phone_number}}">
+            <input type="text" name="address" placeholder="address" value="{{account_complete.address}}">
+            <input type="text" name="post_code" placeholder="post code" value="{{account_complete.post_code}}">
+            <input type="text" name="nation_code" placeholder="natin code" value="{{account_complete.nation_code}}">
+            <button type="submit">submit</button>
+            {% if error %}
+            <div>
+                {{error}}
+            </div>
+            {% endif %}
+
+            {% if succes %}
+            <div>
+            {{succes}}
+            </div>
+            {% endif %}
+
+
+            
+    
+        {% else %}
+        
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="name">
+            <input type="text" name="last_name" placeholder="last name">
+            <input type="text" name="availbale_phone_number" placeholder="availbale phone number">
+            <input type="text" name="address" placeholder="address">
+            <input type="text" name="post_code" placeholder="post code">
+            <input type="text" name="nation_code" placeholder="natin code">
+
+            <button type="submit">submit</button>
+            
+        </form>
+        {% if confirm %}
+            {{confirm}}
+        {% endif %}
+
+        {% if error %}
+            <div>
+                {{error}}
+            </div>
+            {% endif %}
+
+
+             {% if succes %}
+            <div>
+            {{succes}}
+            </div>
+            {% endif %}
+
+           
+
+
+        {% endif %}
+
+       
+
+
+        </form>
+
+
+        
+
+
+
+
+    </div>
+    
+</body>
+</html>

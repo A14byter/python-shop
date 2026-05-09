@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: sans-serif;
+            direction: rtl; 
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto; 
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .tab-buttons {
+            margin-bottom: 20px;
+            text-align: center; 
+        }
+
+        .tab-buttons .tab-button {
+            padding: 10px 25px;
+            margin: 0 5px;
+            cursor: pointer;
+            border: none;
+            background: #e0e0e0;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease; 
+        }
+
+        .tab-buttons .tab-button.active {
+            background: #28a745;
+            color: white;
+            font-weight: bold;
+        }
+
+      
+        .tab-content {
+            display: none; 
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background: #ffffff;
+            animation: fadeIn 0.5s ease-in-out; 
+        }
+
+        .tab-content.active-tab {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+       
+        .item-card {
+            display: flex;  
+            align-items: center; 
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            background: #f9f9f9;
+            transition: box-shadow 0.3s ease; 
+            gap: 15px; 
+        }
+
+        .item-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .item-image {
+            flex-shrink: 0; 
+            width: 80px; 
+            height: 80px;
+            object-fit: cover; 
+            border-radius: 4px;
+        }
+
+        .item-details {
+            flex-grow: 1; 
+        }
+
+        .item-details h4 { 
+            margin: 0 0 5px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .item-details p { 
+            margin: 3px 0;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .item-price {
+            font-weight: bold;
+            color: #dc3545; 
+            text-decoration: line-through; 
+        }
+
+        .item-off-price {
+            
+            color: #888;
+            font-size: 13px;
+        }
+
+        .empty-message { 
+            text-align: center;
+            color: #6c757d;
+            padding: 20px;
+            font-style: italic;
+        }
+        .buy_btn{
+            background-color: cornflowerblue;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            max-width: 200px;
+            margin-top: 10px;
+        }
+        .buy_all_btn{
+            display: inline-block;
+            background-color: cornflowerblue;
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+            max-width: 200px;
+            margin-top: 10px;
+            margin-left: 60px;
+        }
+        .informatins{
+            display: inline;
+            align-items: center;
+            
+        }
+        .informatins p{
+            display: inline-block;
+            margin-right: 20px;
+            color: blue;
+        }
+        .total_price{
+            text-decoration: line-through; 
+        }
+        .nigga{
+            display: inline-block;
+        }
+        
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <div class="tab-buttons">
+            <button class="tab-button active" data-tab="shopping-cart-tab">added items</button>
+            <button class="tab-button" data-tab="bought-items-tab">previous carts</button>
+        </div>
+
+       
+        <div id="shopping-cart-tab" class="tab-content active-tab">
+            {% if box_list %}
+                {% for trade in box_list %}
+                    <div class="item-card">
+                        <img src="{{trade.item.image.url}}" alt="{{trade.item.title}}" class="item-image">
+                        <div class="item-details">
+                            <h4>{{trade.item.title}}</h4>
+                            {% if trade.item.off_price %}
+                                <p class="item-off-price">{{trade.item.off_price}}</p>
+                            {% endif %}
+                            <p class="item-price">{{trade.item.price}}</p>
+                        </div>
+
+   <a href="{% url 'buy_item' trade.item.id %}">
+    <button type="submit" id="buy_btn" class="buy_btn">
+        buy
+    </button>
+   </a>
+    
+                        
+                        
+                    </div>
+                {% endfor %}
+                  <form method="POST" class="nigga" >
+                {% csrf_token %}
+                
+
+                <input type="hidden" name="buy_all" value="all_items">
+
+               
+
+                
+                <button type="submit" class="buy_all_btn">Buy all</button>
+               
+
+            </form>
+                    <div class="informatins">
+                    
+                    <p>offer : {{total_off}} </p>
+                    <p class="total_price">total price : {{total_price}}  </p>
+                    <p> items :{{count}} </p>
+                    </div>
+          
+                
+            {% else %}
+                <div class="empty-message"><p>There is no any item in your item box yet. Add some!</p></div>
+            {% endif %}
+        </div>
+
+    
+        <div id="bought-items-tab" class="tab-content">
+            {% if bought_list %}
+                {% for trade in bought_list %}
+                    <div class="item-card">
+                        <img src="{{trade.item.image.url}}" alt="{{trade.item.title}}" class="item-image">
+                        <div class="item-details">
+                            <h4>{{trade.item.title}}</h4>
+                            {% if trade.item.off_price %}
+                                <p class="item-off-price">{{trade.item.off_price}}</p>
+                            {% endif %}
+                            <p class="item-price">{{trade.item.price}}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="empty-message"><p>You had not any trade yet.</p></div>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <script>
+        
+        const buttons = document.querySelectorAll('.tab-button');
+        const tabs = document.querySelectorAll('.tab-content');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                
+                buttons.forEach(b => b.classList.remove('active'));
+                // فعال کردن دکمه فعلی
+                btn.classList.add('active');
+
+                
+                tabs.forEach(tab => tab.classList.remove('active-tab'));
+
+              
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active-tab');
+            });
+        });
+
+        // اطمینان از فعال بودن تب اول در ابتدای بارگذاری صفحه
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstTabButton = document.querySelector('.tab-button[data-tab="shopping-cart-tab"]');
+            if (firstTabButton) {
+                firstTabButton.click(); // کلیک کردن روی دکمه اول برای فعال کردن تب اول
+            }
+        });
+    </script>
+
+</body>
+</html>

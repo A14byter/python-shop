@@ -1,0 +1,204 @@
+/* --- General Styles --- */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    direction: rtl; /* اگر فارسی استفاده می‌کنید */
+    background-color: #e0f2f7; /* آبی بسیار ملایم */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.signup {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* فاصله بین عناصر */
+}
+
+/* --- Input Fields Styles --- */
+.signup input[type="text"],
+.signup input[type="email"], /* اگر نوع email دارید */
+.signup input[type="password"] { /* نوع password هم اضافه شد */
+    width: calc(100% - 24px); /* محاسبه عرض با احتساب padding */
+    padding: 12px 15px;
+    border: 1px solid #b0bec5; /* خاکستری ملایم */
+    border-radius: 8px;
+    font-size: 16px;
+    color: #455a64;
+    box-sizing: border-box; /* اطمینان از محاسبه padding در عرض */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.signup input[type="text"]::placeholder,
+.signup input[type="email"]::placeholder,
+.signup input[type="password"]::placeholder {
+    color: #90a4ae; /* رنگ کمرنگ‌تر برای placeholder */
+}
+
+.signup input[type="text"]:focus,
+.signup input[type="email"]:focus,
+.signup input[type="password"]:focus {
+    border-color: #0288d1; /* آبی تیره‌تر در فوکوس */
+    outline: none; /* حذف outline پیش‌فرض */
+    box-shadow: 0 0 0 3px rgba(3, 169, 244, 0.3); /* سایه ظریف */
+}
+
+/* --- Button Styles --- */
+.signup button[type="submit"] {
+    background-color: #039be5; /* آبی ملایم */
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: 10px; /* فاصله بیشتر بالای دکمه */
+}
+
+.signup button[type="submit"]:hover {
+    background-color: #0277bd; /* آبی تیره‌تر در هاور */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(3, 169, 244, 0.3);
+}
+
+/* --- Error Message Style --- */
+.signup-error { /* یک کلاس برای نمایش خطا */
+    color: #d32f2f; /* قرمز تیره برای خطا */
+    font-size: 14px;
+    margin-top: 15px;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease; /* انیمیشن ورود */
+}
+
+/* انیمیشن برای متن خطا */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* --- Responsive Design (اختیاری) --- */
+@media (max-width: 480px) {
+    .signup {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+    .signup input[type="text"],
+    .signup input[type="email"],
+    .signup input[type="password"] {
+        font-size: 15px;
+    }
+    .signup button[type="submit"] {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* --- Login Form Styles --- */
+.LogIn {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 400px; /* کمی کوچکتر از فرم ثبت نام */
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px; /* فاصله از عناصر قبلی، اگر وجود داشته باشد */
+}
+
+.LogIn input[type="text"],
+.LogIn input[type="password"] {
+    width: calc(100% - 24px);
+    padding: 12px 15px;
+    border: 1px solid #b0bec5;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #455a64;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.LogIn input[type="text"]::placeholder,
+.LogIn input[type="password"]::placeholder {
+    color: #90a4ae;
+}
+
+.LogIn input[type="text"]:focus,
+.LogIn input[type="password"]:focus {
+    border-color: #0288d1;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(3, 169, 244, 0.3);
+}
+
+.LogIn button[type="submit"] {
+    background-color: #0277bd; /* آبی تیره‌تر برای دکمه ورود */
+    color: white;
+    padding: 15px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    margin-top: 10px;
+}
+
+.LogIn button[type="submit"]:hover {
+    background-color: #01579b; /* آبی خیلی تیره‌تر در هاور */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(1, 87, 155, 0.3);
+}
+
+/* --- Login Error Message Style --- */
+/* اگر از همان کلاس .signup-error استفاده می‌کنید، نیازی به تعریف مجدد نیست. */
+/* اگر می‌خواهید خطا در صفحه لاگین ظاهر متفاوتی داشته باشد: */
+.login-error { /* نام کلاس جدید برای خطای لاگین */
+    color: #d32f2f;
+    font-size: 14px;
+    margin-top: 15px;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease;
+}
+
+/* --- Responsive Styles for Login --- */
+@media (max-width: 480px) {
+    .LogIn {
+        padding: 30px 20px;
+        margin: 10px;
+    }
+    .LogIn input[type="text"],
+    .LogIn input[type="password"] {
+        font-size: 15px;
+    }
+    .LogIn button[type="submit"] {
+        font-size: 16px;
+        padding: 12px 20px;
+    }
+}

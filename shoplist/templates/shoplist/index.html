@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop</title>
+    <link rel="stylesheet" href="{% static 'shoplist/style.css' %}?v={% now 'U' %}">
+</head>
+<body>
+
+    <div class="item_body">
+      
+
+        <form action="" class="search">
+              <div class="logout">
+            <a href="{% url 'logout' %}" >
+                <img src="/media/logout.svg" alt="" class="logouticon">
+                </a>
+
+            
+        </div>
+        <div class="searchbar">
+             <button>
+                search
+            </button>
+            <input type="text" name="item_name" placeholder="Search...">
+            </div>
+            
+             <div class="icon">
+            <a href="{% url 'cart' %}">
+                <img src="/media/shopbox.svg" alt="" class="icon_img">
+            </a>
+            <a href="{% url 'notification' %}">
+                <img src="/media/notification.svg" alt="" class="notificon">
+            
+            </a>
+            <a href="{% url 'delivery' %}">
+                <img src="/media/delivery.png" alt="" class="delivery">
+            </a>
+        </div>
+       
+
+
+        </form>
+       
+        <div class="container">
+             {% for item in item_object %}
+             <a href="{% url 'item_details' item.id %}" class="tabb">
+        <div class="item">
+           
+            <div class="title">
+                {{item.title}}
+            </div>
+            <div class="image">
+                <img src="{{ item.image.url }}" >
+                
+            </div>
+            <div class="describetion">
+                {{item.describetion}}
+            </div>
+
+            <form method="POST" action="" class="add_item">
+                 {% csrf_token %} 
+                <input type="hidden" name="item_add" value="{{item.title}}">
+                
+                {% if item in existness_list %}
+                <button type="submit" class="remove_btn"> remove item</button>
+                
+                {% else %}
+                <button type="submit" class="add_btn">
+                    add item
+
+                </button>
+                
+                {% endif %}
+
+
+            </form>
+               
+            </div>
+            </a>
+        
+        {% endfor %}
+                 
+            
+    </div>
+    
+</body>
+</html>

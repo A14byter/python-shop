@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Verification</title>
+
+    <style>
+        /* استایل کلی صفحه */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: #f5f5f5;
+            direction: ltr; /* اگر خواستی فارسی شود: rtl */
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 60px auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 24px 28px;
+        }
+
+        /* پیام خطای کلی (complete_error) */
+        .alert-error {
+            background: #ffe5e5;
+            color: #b00020;
+            border: 1px solid #ffb3b3;
+            border-radius: 8px;
+            padding: 12px 14px;
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+        .superbtn {
+            padding: 10px 14px;
+            margin-left: 35%;
+            margin-top: 10%;
+            border-radius: 6px;
+            border: none;
+            background: #3f51b5;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, 
+            
+        }
+
+        /* نمایش کد (code) */
+        .code-box {
+            background: #f0f4ff;
+            border: 1px dashed #647dee;
+            color: #283593;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* فرم ورودی کد */
+        .form-code {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .form-code label {
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        .form-code input[type="text"] {
+            padding: 10px 12px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-code input[type="text"]:focus {
+            border-color: #3f51b5;
+        }
+
+        .btn-submit {
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: none;
+            background: #3f51b5;
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+
+        .btn-submit:hover {
+            background: #303f9f;
+        }
+
+        .btn-submit:active {
+            transform: scale(0.98);
+        }
+
+        /* پیام خطای اعتبارسنجی (error) */
+        .validation-error {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    {% if complete_error %}
+        <div class="alert-error">
+            {{ complete_error }}
+            <a href="{% url 'account_complete' %}">
+                <button class="superbtn">complete</button>
+            </a>
+
+        </div>
+    {% else %}
+
+        <div class="code-box">
+            {{ code }}
+        </div>
+
+        <form action="" method="POST" class="form-code">
+            {% csrf_token %}
+            <label for="code_check">Enter the code here:</label>
+            <input type="text" id="code_check" name="code_check" placeholder="Enter the code here">
+            <button type="submit" class="btn-submit">Verify</button>
+
+            {% if error %}
+                <div class="validation-error">Validation failed.</div>
+            {% endif %}
+        </form>
+
+    {% endif %}
+</div>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>وضعیت سفارشات</title>
+    <link rel="stylesheet" href="{% static 'shoplist/style2.css' %}">
+</head>
+<body>
+    <div class="container">
+        {% if error %}
+            <h2 class="error-message">{{ error }}</h2>
+        {% else %}
+            <!-- اطلاعات کاربر -->
+            <div class="account_complete">
+                <h2>Your delivery informations</h2>
+                <p><span>Name:</span> {{ account_complete.name }}</p>
+                <p><span>Last Name:</span> {{ account_complete.last_name }}</p>
+                <p><span>Address:</span> {{ account_complete.address }}</p>
+                <p><span>curent phone:</span> {{ account_complete.availbale_phone_number }}</p>
+                <p><span>Post code:</span> {{ account_complete.post_code }}</p>
+                <p><span>Nation code:</span> {{ account_complete.nation_code }}</p>
+            </div>
+
+            <!-- لیست سفارش‌ها -->
+            {% if delivery_information %}
+                {% for delivery in delivery_information %}
+                    <div class="delivery-card">
+                        <!-- تصویر محصول -->
+                        <img src="{{ delivery.trade.item.image.url }}" alt="{{ delivery.trade.item.title }}">
+
+                        <div class="delivery-info">
+                            <strong>{{ delivery.trade.item.title }}</strong>
+                            <div class="price-row">
+                                {% if delivery.trade.item.off_price %}
+                                    <span class="original-price">{{ delivery.trade.item.off_price }}</span>
+                                {% endif %}
+                                <span class="final-price">{{ delivery.trade.item.price }}</span>
+                            </div>
+                        </div>
+
+                        <div class="delivery-status">
+                            {% if delivery.accepted == True %}
+                                <span class="status-icon"><img src="/media/next.svg" alt=""></span>
+                                <span class="status-icon"><img src="/media/complete.svg" alt=""></span>
+                                <span class="status-text accepted">The request has been sent to server</span>
+                            {% endif %}
+                            {% if delivery.post == True %}
+                                <span class="status-icon"><img src="/media/next.svg" alt=""></span>
+                                <span class="status-icon"><img src="/media/complete.svg" alt=""></span>
+                                <span class="status-text post">The post will deliver item soon</span>
+                            {% endif %}
+                            {% if delivery.delievered == True %}
+                                <span class="status-icon"><img src="/media/next.svg" alt=""></span>
+                                <span class="status-icon"><img src="/media/complete.svg" alt=""></span>
+                                <span class="status-text delivered"> Item has been delivered</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p class="no-trade">شما هنوز هیچ سفارشی ثبت نکرده‌اید.</p>
+            {% endif %}
+        {% endif %}
+    </div>
+</body>
+</html>
